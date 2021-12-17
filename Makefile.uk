@@ -1,0 +1,238 @@
+#  SPDX-License-Identifier: BSD-3-Clause
+#
+#  LIBCURL Makefile.uk
+#
+#  Authors: Marc Rittinghaus <marc.rittinghaus@kit.edu>
+#
+#  Copyright (c) 2021, Karlsruhe Institute of Technology (KIT).
+#                All rights reserved.
+#
+#  Redistribution and use in source and binary forms, with or without
+#  modification, are permitted provided that the following conditions
+#  are met:
+#
+#  1. Redistributions of source code must retain the above copyright
+#     notice, this list of conditions and the following disclaimer.
+#  2. Redistributions in binary form must reproduce the above copyright
+#     notice, this list of conditions and the following disclaimer in the
+#     documentation and/or other materials provided with the distribution.
+#  3. Neither the name of the copyright holder nor the names of its
+#     contributors may be used to endorse or promote products derived from
+#     this software without specific prior written permission.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+#  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+#  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+#  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+#  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+#  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+#  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+#  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+#  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+#  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+#  POSSIBILITY OF SUCH DAMAGE.
+#
+
+################################################################################
+# Library registration
+################################################################################
+$(eval $(call addlib_s,libcurl,$(CONFIG_LIBCURL)))
+
+################################################################################
+# Sources
+################################################################################
+LIBCURL_VERSION = 7.80.0
+LIBCURL_BASENAME = curl-$(LIBCURL_VERSION)
+LIBCURL_URL = https://curl.se/download/curl-$(LIBCURL_VERSION).tar.gz
+LIBCURL_PATCHDIR = $(LIBCURL_BASE)/patches
+$(eval $(call fetch,libcurl,$(LIBCURL_URL)))
+$(eval $(call patch,libcurl,$(LIBCURL_PATCHDIR),$(LIBCURL_BASENAME)))
+
+################################################################################
+# Helpers
+################################################################################
+LIBCURL_SRC = $(LIBCURL_ORIGIN)/$(LIBCURL_BASENAME)
+
+################################################################################
+# Library includes
+################################################################################
+LIBCURL_CINCLUDES += -I$(LIBCURL_BASE)/
+LIBCURL_CINCLUDES += -I$(LIBCURL_SRC)/lib
+
+CINCLUDES-$(CONFIG_LIBCURL) += -I$(LIBCURL_SRC)/include
+
+################################################################################
+# Flags
+################################################################################
+LIBCURL_FLAGS-y += -DHAVE_CONFIG_H
+LIBCURL_FLAGS-y += -DCURL_HIDDEN_SYMBOLS
+LIBCURL_FLAGS-y += -DBUILDING_LIBCURL
+
+# Suppress some warnings to make the build process look neater
+LIBCURL_FLAGS_SUPPRESS-y += -Wno-system-headers
+
+LIBCURL_CFLAGS-y += $(LIBCURL_FLAGS-y)
+LIBCURL_CFLAGS-y += $(LIBCURL_FLAGS_SUPPRESS-y)
+
+################################################################################
+# Sources
+################################################################################
+# LIBCURL_SRCS += $(LIBCURL_BASE)/
+
+################################################################################
+# Library sources
+################################################################################
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/altsvc.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/amigaos.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/asyn-ares.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/asyn-thread.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/base64.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/bufref.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/c-hyper.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/conncache.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/connect.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/content_encoding.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/cookie.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_addrinfo.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_ctype.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_des.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_endian.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_fnmatch.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_get_line.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_gethostname.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_gssapi.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_memrchr.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_multibyte.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_ntlm_core.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_ntlm_wb.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_path.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_range.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_rtmp.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_sasl.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_sspi.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/curl_threads.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/dict.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/doh.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/dotdot.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/dynbuf.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/easy.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/easygetopt.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/easyoptions.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/escape.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/file.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/fileinfo.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/formdata.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/ftp.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/ftplistparser.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/getenv.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/getinfo.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/gopher.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/hash.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/hmac.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/hostasyn.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/hostcheck.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/hostip.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/hostip4.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/hostip6.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/hostsyn.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/hsts.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/http.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/http2.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/http_aws_sigv4.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/http_chunks.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/http_digest.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/http_negotiate.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/http_ntlm.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/http_proxy.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/idn_win32.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/if2ip.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/imap.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/inet_ntop.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/inet_pton.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/krb5.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/ldap.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/llist.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/md4.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/md5.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/memdebug.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/mime.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/mprintf.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/mqtt.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/multi.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/netrc.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/non-ascii.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/nonblock.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/openldap.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/parsedate.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/pingpong.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/pop3.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/progress.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/psl.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/rand.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/rename.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/rtsp.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/select.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/sendf.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/setopt.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/sha256.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/share.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/slist.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/smb.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/smtp.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/socketpair.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/socks.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/socks_gssapi.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/socks_sspi.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/speedcheck.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/splay.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/strcase.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/strdup.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/strerror.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/strtok.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/strtoofft.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/system_win32.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/telnet.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/tftp.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/timeval.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/transfer.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/url.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/urlapi.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vauth/cleartext.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vauth/cram.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vauth/digest.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vauth/digest_sspi.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vauth/gsasl.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vauth/krb5_gssapi.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vauth/krb5_sspi.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vauth/ntlm.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vauth/ntlm_sspi.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vauth/oauth2.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vauth/spnego_gssapi.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vauth/spnego_sspi.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vauth/vauth.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/version.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/version_win32.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vquic/ngtcp2.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vquic/quiche.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vquic/vquic.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vssh/libssh.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vssh/libssh2.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vssh/wolfssh.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/bearssl.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/gskit.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/gtls.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/keylog.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/mbedtls.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/mbedtls_threadlock.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/mesalink.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/nss.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/openssl.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/rustls.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/schannel.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/schannel_verify.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/sectransp.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/vtls.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/vtls/wolfssl.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/warnless.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/wildcard.c
+LIBCURL_SRCS += $(LIBCURL_SRC)/lib/x509asn1.c

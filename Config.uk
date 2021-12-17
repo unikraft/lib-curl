@@ -1,0 +1,8 @@
+menuconfig LIBCURL
+	bool "libcurl: client-side URL transfer library"
+	default n
+	select LIBNOLIBC if !HAVE_LIBC
+	select LIBSSL
+	select LIBCRYPTO
+	select LIBZLIB
+	select LIBZSTD
