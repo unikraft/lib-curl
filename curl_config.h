@@ -106,7 +106,7 @@
 /* #undef CURL_DISABLE_SMTP */
 
 /* to disable socketpair support */
-/* #undef CURL_DISABLE_SOCKETPAIR */
+#define CURL_DISABLE_SOCKETPAIR 1 /* requires AF_UNIX */
 
 /* to disable TELNET */
 /* #undef CURL_DISABLE_TELNET */
@@ -517,13 +517,13 @@
 /* #undef HAVE_PK11_CREATEMANAGEDGENERICOBJECT */
 
 /* Define to 1 if you have a working poll function. */
-#define HAVE_POLL 1
+/* #define HAVE_POLL 1 */
 
 /* If you have a fine poll */
-#define HAVE_POLL_FINE 1
+/* #define HAVE_POLL_FINE 1 */
 
 /* Define to 1 if you have the <poll.h> header file. */
-#define HAVE_POLL_H 1
+/* #define HAVE_POLL_H 1 */
 
 /* Define to 1 if you have a working POSIX-style strerror_r function. */
 #define HAVE_POSIX_STRERROR_R 1
@@ -1008,7 +1008,7 @@
 /* #undef USE_SECTRANSP */
 
 /* if you want POSIX threaded DNS lookup */
-#define USE_THREADS_POSIX 1
+/* #undef USE_THREADS_POSIX */
 
 /* if you want Win32 threaded DNS lookup */
 /* #undef USE_THREADS_WIN32 */
@@ -1017,7 +1017,7 @@
 #define USE_TLS_SRP 1
 
 /* Use Unix domain sockets */
-#define USE_UNIX_SOCKETS 1
+/* #undef USE_UNIX_SOCKETS */
 
 /* Define to 1 if you are building a Windows target with crypto API support.
    */
