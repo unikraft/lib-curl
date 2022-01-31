@@ -41,7 +41,7 @@ $(eval $(call addlib_s,libcurl,$(CONFIG_LIBCURL)))
 ################################################################################
 # Sources
 ################################################################################
-LIBCURL_VERSION = 7.80.0
+LIBCURL_VERSION = 7.81.0
 LIBCURL_BASENAME = curl-$(LIBCURL_VERSION)
 LIBCURL_URL = https://curl.se/download/curl-$(LIBCURL_VERSION).tar.gz
 LIBCURL_PATCHDIR = $(LIBCURL_BASE)/patches
