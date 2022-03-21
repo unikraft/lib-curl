@@ -496,7 +496,9 @@
 #define HAVE_OPENSSL_RSA_H 1
 
 /* if you have the function SRP_Calc_client_key */
+#ifndef CONFIG_LIBLIBRESSL
 #define HAVE_OPENSSL_SRP 1
+#endif
 
 /* Define to 1 if you have the <openssl/ssl.h> header file. */
 #define HAVE_OPENSSL_SSL_H 1
