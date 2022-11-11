@@ -2,7 +2,106 @@ menuconfig LIBCURL
 	bool "libcurl: client-side URL transfer library"
 	default n
 	select LIBNOLIBC if !HAVE_LIBC
-	select LIBSSL
-	select LIBCRYPTO
-	select LIBZLIB
-	select LIBZSTD
+
+if LIBCURL
+
+config LIBCURL_NETRC
+	bool "Enable netrc parsing"
+	default n
+
+config LIBCURL_CRYPTO_AUTH
+	bool "Enable cryptographic authentication"
+	default n
+
+config LIBCURL_NTLM
+	bool "Enable NTLM support"
+	default n
+	depends on LIBCURL_CRYPTO_AUTH
+
+config LIBCURL_SSL
+	bool "Enable SSL support"
+	default n
+	depends on LIBSSL
+	depends on LIBCRYPTO
+
+config LIBCURL_ZLIB
+	bool "Enable zlib support"
+	default n
+	depends on LIBZLIB
+
+config LIBCURL_ZSTD
+	bool "Enable zstd support"
+	default n
+       	depends on LIBZSTD
+
+config LIBCURL_HTTP
+	bool "Enable HTTP support"
+	default n
+
+config LIBCURL_HTTP_AUTH
+	bool "Enable HTTP authentication support"
+	default n
+	depends on LIBCURL_HTTP
+
+config LIBCURL_DOH
+	bool "Enable DoH support"
+	default n
+	depends on LIBCURL_HTTP
+
+config LIBCURL_PROXY
+	bool "Enable proxies"
+	default n
+
+config LIBCURL_COOKIES
+	bool "Enable cookie support"
+	default n
+
+config LIBCURL_FTP
+	bool "Enable FTP protocol support"
+	default n
+
+config LIBCURL_GOPHER
+	bool "Enable gopher protocol support"
+	default n
+
+config LIBCURL_RTSP
+	bool "Enable RTSP support"
+	default n
+
+config LIBCURL_SMB
+	bool "Enable SMB support"
+	default n
+
+config LIBCURL_TFTP
+	bool "Enable TFTP support"
+	default n
+
+config LIBCURL_SMTP
+	bool "Enable SMTP support"
+	default n
+
+config LIBCURL_TELNET
+	bool "Enable telnet support"
+	default n
+
+config LIBCURL_MQTT
+	bool "Enable MQTT support"
+	default n
+
+config LIBCURL_IMAP
+	bool "Enable IMAP support"
+	default n
+
+config LIBCURL_LDAP
+	bool "Enable LDAP support"
+	default n
+
+config LIBCURL_POP3
+	bool "Enable POP3 support"
+	default n
+
+config LIBCURL_DICT
+	bool "Enable DICT support"
+	default n
+
+endif

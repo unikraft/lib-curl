@@ -21,29 +21,41 @@
 /* disable alt-svc */
 #define CURL_DISABLE_ALTSVC 1
 
+#ifndef CONFIG_LIBCURL_COOKIES
 /* to disable cookies support */
-/* #undef CURL_DISABLE_COOKIES */
+#define CURL_DISABLE_COOKIES 1
+#endif
 
+#ifndef CONFIG_LIBCURL_CRYPTO_AUTH
 /* to disable cryptographic authentication */
-/* #undef CURL_DISABLE_CRYPTO_AUTH */
+#define CURL_DISABLE_CRYPTO_AUTH 1
+#endif
 
+#ifndef CONFIG_LIBCURL_DICT
 /* to disable DICT */
-/* #undef CURL_DISABLE_DICT */
+#define CURL_DISABLE_DICT 1
+#endif
 
+#ifndef CONFIG_LIBCURL_DOH
 /* disable DoH */
-/* #undef CURL_DISABLE_DOH */
+#define CURL_DISABLE_DOH 1
+#endif
 
 /* to disable FILE */
 /* #undef CURL_DISABLE_FILE */
 
+#ifndef CONFIG_LIBCURL_FTP
 /* to disable FTP */
-/* #undef CURL_DISABLE_FTP */
+#define CURL_DISABLE_FTP 1
+#endif
 
 /* to disable curl_easy_options */
 /* #undef CURL_DISABLE_GETOPTIONS */
 
+#ifndef CONFIG_LIBCURL_GOPHER
 /* to disable Gopher */
-/* #undef CURL_DISABLE_GOPHER */
+#define CURL_DISABLE_GOPHER 1
+#endif
 
 /* disable alt-svc */
 #define CURL_DISABLE_HSTS 1
@@ -51,17 +63,23 @@
 /* to disable HTTP */
 /* #undef CURL_DISABLE_HTTP */
 
+#ifndef CONFIG_LIBCURL_HTTP_AUTH
 /* disable HTTP authentication */
-/* #undef CURL_DISABLE_HTTP_AUTH */
+#define CURL_DISABLE_HTTP_AUTH 1
+#endif
 
+#ifndef CONFIG_LIBCURL_IMAP
 /* to disable IMAP */
-/* #undef CURL_DISABLE_IMAP */
+#define CURL_DISABLE_IMAP 1
+#endif
 
+#ifndef CONFIG_LIBCURL_LDAP
 /* to disable LDAP */
 #define CURL_DISABLE_LDAP 1
 
 /* to disable LDAPS */
 #define CURL_DISABLE_LDAPS 1
+#endif
 
 /* to disable --libcurl C code generation option */
 /* #undef CURL_DISABLE_LIBCURL_OPTION */
@@ -69,14 +87,20 @@
 /* disable mime API */
 /* #undef CURL_DISABLE_MIME */
 
+#ifndef CONFIG_LIBCURL_MQTT
 /* to disable MQTT */
-/* #undef CURL_DISABLE_MQTT */
+#define CURL_DISABLE_MQTT 1
+#endif
 
+#ifndef CONFIG_LIBCURL_NETRC
 /* disable netrc parsing */
-/* #undef CURL_DISABLE_NETRC */
+#define CURL_DISABLE_NETRC 1
+#endif
 
+#ifndef CONFIG_LIBCURL_NTLM
 /* to disable NTLM support */
-/* #undef CURL_DISABLE_NTLM */
+#define CURL_DISABLE_NTLM 1
+#endif
 
 /* if the OpenSSL configuration won't be loaded automatically */
 /* #undef CURL_DISABLE_OPENSSL_AUTO_LOAD_CONFIG */
@@ -84,35 +108,49 @@
 /* disable date parsing */
 /* #undef CURL_DISABLE_PARSEDATE */
 
+#ifndef CONFIG_LIBCURL_POP3
 /* to disable POP3 */
-/* #undef CURL_DISABLE_POP3 */
+#define CURL_DISABLE_POP3 1
+#endif
 
 /* disable progress-meter */
 /* #undef CURL_DISABLE_PROGRESS_METER */
 
+#ifndef CONFIG_LIBCURL_PROXY
 /* to disable proxies */
-/* #undef CURL_DISABLE_PROXY */
+#define CURL_DISABLE_PROXY 1
+#endif
 
+#ifndef CONFIG_LIBCURL_RTSP
 /* to disable RTSP */
-/* #undef CURL_DISABLE_RTSP */
+#define CURL_DISABLE_RTSP 1
+#endif
 
 /* disable DNS shuffling */
 /* #undef CURL_DISABLE_SHUFFLE_DNS */
 
+#ifndef CONFIG_LIBCURL_SMB
 /* to disable SMB/CIFS */
-/* #undef CURL_DISABLE_SMB */
+#define CURL_DISABLE_SMB 1
+#endif
 
+#ifndef CONFIG_LIBCURL_SMTP
 /* to disable SMTP */
-/* #undef CURL_DISABLE_SMTP */
+#define CURL_DISABLE_SMTP 1
+#endif
 
 /* to disable socketpair support */
 #define CURL_DISABLE_SOCKETPAIR 1 /* requires AF_UNIX */
 
+#ifndef CONFIG_LIBCURL_TELNET
 /* to disable TELNET */
-/* #undef CURL_DISABLE_TELNET */
+#define CURL_DISABLE_TELNET 1
+#endif
 
+#ifndef CONFIG_LIBCURL_TFTP
 /* to disable TFTP */
-/* #undef CURL_DISABLE_TFTP */
+#define CURL_DISABLE_TFTP 1
+#endif
 
 /* to disable verbose strings */
 /* #undef CURL_DISABLE_VERBOSE_STRINGS */
@@ -229,15 +267,18 @@
 /* Define to 1 if you have the ftruncate function. */
 #define HAVE_FTRUNCATE 1
 
+#ifdef CONFIG_LIBLWIP
 /* Define to 1 if you have a working getaddrinfo function. */
 #define HAVE_GETADDRINFO 1
 
 /* Define to 1 if the getaddrinfo function is threadsafe. */
 #define HAVE_GETADDRINFO_THREADSAFE 1
+#endif
 
 /* Define to 1 if you have the `geteuid' function. */
 #define HAVE_GETEUID 1
 
+#ifdef CONFIG_LIBLWIP
 /* Define to 1 if you have the gethostbyname function. */
 #define HAVE_GETHOSTBYNAME 1
 
@@ -255,6 +296,7 @@
 
 /* Define to 1 if you have the gethostname function. */
 #define HAVE_GETHOSTNAME 1
+#endif
 
 /* Define to 1 if you have a working getifaddrs function. */
 /* #undef HAVE_GETIFADDRS */
@@ -319,6 +361,7 @@
 /* Define to 1 if you have the <idn2.h> header file. */
 /* #undef HAVE_IDN2_H */
 
+#ifdef CONFIG_LIBLWIP
 /* Define to 1 if you have the <ifaddrs.h> header file. */
 #define HAVE_IFADDRS_H 1
 
@@ -330,6 +373,7 @@
 
 /* Define to 1 if you have a IPv6 capable working inet_pton function. */
 #define HAVE_INET_PTON 1
+#endif
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
@@ -353,8 +397,10 @@
 /* Define to 1 if you have a working ioctl FIONBIO function. */
 #define HAVE_IOCTL_FIONBIO 1
 
+#if CONFIG_LIBLWIP
 /* Define to 1 if you have a working ioctl SIOCGIFADDR function. */
 #define HAVE_IOCTL_SIOCGIFADDR 1
+#endif
 
 /* Define to 1 if you have the <io.h> header file. */
 /* #undef HAVE_IO_H */
@@ -371,8 +417,10 @@
 /* Define to 1 if you have the `ldap_init_fd' function. */
 /* #undef HAVE_LDAP_INIT_FD */
 
+#ifdef CONFIG_LIBCURL_SSL
 /* Use LDAPS implementation */
 #define HAVE_LDAP_SSL 1
+#endif
 
 /* Define to 1 if you have the ldap_ssl.h header file. */
 /* #undef HAVE_LDAP_SSL_H */
@@ -407,17 +455,23 @@
 /* Define to 1 if you have the <libssh/libssh.h> header file. */
 /* #undef HAVE_LIBSSH_LIBSSH_H */
 
+#ifdef CONFIG_LIBCURL_SSL
 /* Define to 1 if you have the `ssl' library (-lssl). */
 #define HAVE_LIBSSL 1
+#endif
 
 /* Define to 1 if you have the `wolfssh' library (-lwolfssh). */
 /* #undef HAVE_LIBWOLFSSH */
 
+#ifdef CONFIG_LIBCURL_ZLIB
 /* if zlib is available */
 #define HAVE_LIBZ 1
+#endif
 
+#ifdef CONFIG_LIBCURL_ZSTD
 /* Define to 1 if you have the `zstd' library (-lzstd). */
 #define HAVE_LIBZSTD 1
+#endif
 
 /* Define to 1 if you have the <linux/tcp.h> header file. */
 /* #undef HAVE_LINUX_TCP_H */
@@ -462,7 +516,7 @@
 #define HAVE_NETINET_TCP_H 1
 
 /* Define to 1 if you have the <net/if.h> header file. */
-#define HAVE_NET_IF_H 1
+/* #define HAVE_NET_IF_H 1 */
 
 /* Define to 1 if you have the <nghttp2/nghttp2.h> header file. */
 /* #undef HAVE_NGHTTP2_NGHTTP2_H */
@@ -480,6 +534,7 @@
    */
 /* #undef HAVE_OLD_GSSMIT */
 
+#ifdef CONFIG_LIBCURL_SSL
 /* Define to 1 if using OpenSSL 3 or later. */
 /* #undef HAVE_OPENSSL3 */
 
@@ -508,6 +563,7 @@
 
 /* Define to 1 if you have the <pem.h> header file. */
 /* #undef HAVE_PEM_H */
+#endif
 
 /* Define to 1 if you have the `pipe' function. */
 #define HAVE_PIPE 1
@@ -785,14 +841,18 @@
 /* Define to 1 if you have the <x509.h> header file. */
 /* #undef HAVE_X509_H */
 
+#ifdef CONFIG_LIBCURL_ZLIB
 /* if you have the zlib.h header file */
 #define HAVE_ZLIB_H 1
+#endif
 
+#ifdef CONFIG_LIBCURL_ZSTD
 /* if libzstd is in use */
 #define HAVE_ZSTD 1
 
 /* Define to 1 if you have the <zstd.h> header file. */
 #define HAVE_ZSTD_H 1
+#endif
 
 /* Define to the sub-directory where libtool stores uninstalled libraries. */
 #define LT_OBJDIR ".libs/"
@@ -988,8 +1048,10 @@
 /* Use OpenLDAP-specific code */
 /* #undef USE_OPENLDAP */
 
+#ifdef CONFIG_LIBCURL_SSL
 /* if OpenSSL is in use */
 #define USE_OPENSSL 1
+#endif
 
 /* if quiche is in use */
 /* #undef USE_QUICHE */
@@ -1009,8 +1071,10 @@
 /* if you want Win32 threaded DNS lookup */
 /* #undef USE_THREADS_WIN32 */
 
+#ifdef CONFIG_LIBCURL_SSL
 /* Use TLS-SRP authentication */
 #define USE_TLS_SRP 1
+#endif
 
 /* Use Unix domain sockets */
 /* #undef USE_UNIX_SOCKETS */
