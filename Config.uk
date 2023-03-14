@@ -4,6 +4,7 @@ menuconfig LIBCURL
 	depends on HAVE_LIBC
 	select LIBVFSCORE
 	select LIBPOSIX_SOCKET
+	select LIBPOSIX_EVENT
 
 if LIBCURL
 
