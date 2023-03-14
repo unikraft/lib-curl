@@ -65,6 +65,7 @@ CINCLUDES-$(CONFIG_LIBCURL) += -I$(LIBCURL_SRC)/include
 # Flags
 ################################################################################
 LIBCURL_FLAGS-y += -DHAVE_CONFIG_H
+LIBCURL_FLAGS-y += -DHAVE_POLL_H
 LIBCURL_FLAGS-y += -DCURL_HIDDEN_SYMBOLS
 LIBCURL_FLAGS-y += -DBUILDING_LIBCURL
 
