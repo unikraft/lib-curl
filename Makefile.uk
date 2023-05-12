@@ -118,7 +118,9 @@ LIBCURL_SRCS += $(LIBCURL_SRC)/lib/dotdot.c
 LIBCURL_SRCS += $(LIBCURL_SRC)/lib/dynbuf.c
 LIBCURL_SRCS += $(LIBCURL_SRC)/lib/easy.c
 LIBCURL_SRCS += $(LIBCURL_SRC)/lib/easygetopt.c
+ifeq ($(CONFIG_LIBCURL_GET_EASY_OPTIONS),y)
 LIBCURL_SRCS += $(LIBCURL_SRC)/lib/easyoptions.c
+endif
 LIBCURL_SRCS += $(LIBCURL_SRC)/lib/escape.c
 LIBCURL_SRCS += $(LIBCURL_SRC)/lib/file.c
 LIBCURL_SRCS += $(LIBCURL_SRC)/lib/fileinfo.c

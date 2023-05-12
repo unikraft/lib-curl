@@ -8,6 +8,26 @@ menuconfig LIBCURL
 
 if LIBCURL
 
+config LIBCURL_GET_EASY_OPTIONS
+	bool "Enable lookup easy options at runtime"
+	default n
+
+config LIBCURL_PROGRESS_METER
+	bool "Enable progress bar printing"
+	default n
+
+config LIBCURL_VERBOSE_STRINGS
+	bool "Include debugging and error code strings"
+	default n
+
+config LIBCURL_LIBCURL_CODEGEN
+	bool "Enable libcurl C code generation"
+	default n
+
+config LIBCURL_DATE_PARSE
+	bool "Enable date parsing for time conditionals"
+	default n
+
 config LIBCURL_NETRC
 	bool "Enable netrc parsing"
 	default n

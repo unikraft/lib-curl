@@ -50,7 +50,9 @@
 #endif
 
 /* to disable curl_easy_options */
-/* #undef CURL_DISABLE_GETOPTIONS */
+#ifndef CONFIG_LIBCURL_GET_EASY_OPTIONS
+#define CURL_DISABLE_GETOPTIONS 1
+#endif
 
 #ifndef CONFIG_LIBCURL_GOPHER
 /* to disable Gopher */
@@ -82,7 +84,9 @@
 #endif
 
 /* to disable --libcurl C code generation option */
-/* #undef CURL_DISABLE_LIBCURL_OPTION */
+#ifndef CONFIG_LIBCURL_LIBCURL_CODEGEN
+#define CURL_DISABLE_LIBCURL_OPTION 1
+#endif
 
 /* disable mime API */
 /* #undef CURL_DISABLE_MIME */
@@ -106,7 +110,9 @@
 /* #undef CURL_DISABLE_OPENSSL_AUTO_LOAD_CONFIG */
 
 /* disable date parsing */
-/* #undef CURL_DISABLE_PARSEDATE */
+#ifndef CONFIG_LIBCURL_DATE_PARSE
+#define CURL_DISABLE_PARSEDATE 1
+#endif
 
 #ifndef CONFIG_LIBCURL_POP3
 /* to disable POP3 */
@@ -114,7 +120,9 @@
 #endif
 
 /* disable progress-meter */
-/* #undef CURL_DISABLE_PROGRESS_METER */
+#ifndef CONFIG_LIBCURL_PROGRESS_METER
+#define CURL_DISABLE_PROGRESS_METER 1
+#endif
 
 #ifndef CONFIG_LIBCURL_PROXY
 /* to disable proxies */
@@ -153,7 +161,9 @@
 #endif
 
 /* to disable verbose strings */
-/* #undef CURL_DISABLE_VERBOSE_STRINGS */
+#ifndef CONFIG_LIBCURL_VERBOSE_STRINGS
+#define CURL_DISABLE_VERBOSE_STRINGS 1
+#endif
 
 /* Definition to make a library symbol externally visible. */
 #define CURL_EXTERN_SYMBOL __attribute__ ((__visibility__ ("default")))
