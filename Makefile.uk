@@ -60,6 +60,7 @@ LIBCURL_CINCLUDES += -I$(LIBCURL_BASE)/
 LIBCURL_CINCLUDES += -I$(LIBCURL_SRC)/lib
 
 CINCLUDES-$(CONFIG_LIBCURL) += -I$(LIBCURL_SRC)/include
+CXXINCLUDES-$(CONFIG_LIBCURL) += -I$(LIBCURL_SRC)/include
 
 ################################################################################
 # Flags
