@@ -407,10 +407,8 @@
 /* Define to 1 if you have a working ioctl FIONBIO function. */
 #define HAVE_IOCTL_FIONBIO 1
 
-#if CONFIG_LIBLWIP
 /* Define to 1 if you have a working ioctl SIOCGIFADDR function. */
-#define HAVE_IOCTL_SIOCGIFADDR 1
-#endif
+/* #undef HAVE_IOCTL_SIOCGIFADDR */
 
 /* Define to 1 if you have the <io.h> header file. */
 /* #undef HAVE_IO_H */
