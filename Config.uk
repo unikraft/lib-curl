@@ -1,0 +1,130 @@
+menuconfig LIBCURL
+	bool "libcurl: client-side URL transfer library"
+	default n
+	depends on HAVE_LIBC
+	select LIBVFSCORE
+	select LIBPOSIX_SOCKET
+	select LIBPOSIX_EVENT
+
+if LIBCURL
+
+config LIBCURL_GET_EASY_OPTIONS
+	bool "Enable lookup easy options at runtime"
+	default n
+
+config LIBCURL_PROGRESS_METER
+	bool "Enable progress bar printing"
+	default n
+
+config LIBCURL_VERBOSE_STRINGS
+	bool "Include debugging and error code strings"
+	default y
+
+config LIBCURL_LIBCURL_CODEGEN
+	bool "Enable libcurl C code generation"
+	default n
+
+config LIBCURL_DATE_PARSE
+	bool "Enable date parsing for time conditionals"
+	default n
+
+config LIBCURL_NETRC
+	bool "Enable netrc parsing"
+	default n
+
+config LIBCURL_CRYPTO_AUTH
+	bool "Enable cryptographic authentication"
+	default n
+
+config LIBCURL_NTLM
+	bool "Enable NTLM support"
+	default n
+	depends on LIBCURL_CRYPTO_AUTH
+
+config LIBCURL_SSL
+	bool "Enable SSL support"
+	default n
+	depends on LIBSSL
+	depends on LIBCRYPTO
+
+config LIBCURL_ZLIB
+	bool "Enable zlib support"
+	default n
+	depends on LIBZLIB
+
+config LIBCURL_ZSTD
+	bool "Enable zstd support"
+	default n
+       	depends on LIBZSTD
+
+config LIBCURL_HTTP
+	bool "Enable HTTP support"
+	default n
+
+config LIBCURL_HTTP_AUTH
+	bool "Enable HTTP authentication support"
+	default n
+	depends on LIBCURL_HTTP
+
+config LIBCURL_DOH
+	bool "Enable DoH support"
+	default n
+	depends on LIBCURL_HTTP
+
+config LIBCURL_PROXY
+	bool "Enable proxies"
+	default n
+
+config LIBCURL_COOKIES
+	bool "Enable cookie support"
+	default n
+
+config LIBCURL_FTP
+	bool "Enable FTP protocol support"
+	default n
+
+config LIBCURL_GOPHER
+	bool "Enable gopher protocol support"
+	default n
+
+config LIBCURL_RTSP
+	bool "Enable RTSP support"
+	default n
+
+config LIBCURL_SMB
+	bool "Enable SMB support"
+	default n
+
+config LIBCURL_TFTP
+	bool "Enable TFTP support"
+	default n
+
+config LIBCURL_SMTP
+	bool "Enable SMTP support"
+	default n
+
+config LIBCURL_TELNET
+	bool "Enable telnet support"
+	default n
+
+config LIBCURL_MQTT
+	bool "Enable MQTT support"
+	default n
+
+config LIBCURL_IMAP
+	bool "Enable IMAP support"
+	default n
+
+config LIBCURL_LDAP
+	bool "Enable LDAP support"
+	default n
+
+config LIBCURL_POP3
+	bool "Enable POP3 support"
+	default n
+
+config LIBCURL_DICT
+	bool "Enable DICT support"
+	default n
+
+endif
