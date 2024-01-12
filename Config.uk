@@ -118,6 +118,7 @@ config LIBCURL_IMAP
 config LIBCURL_LDAP
 	bool "Enable LDAP support"
 	default n
+	depends on LIBLDAP
 
 config LIBCURL_POP3
 	bool "Enable POP3 support"
